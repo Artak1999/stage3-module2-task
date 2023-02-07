@@ -4,11 +4,13 @@ import com.mjc.school.repository.BaseRepository;
 import com.mjc.school.repository.DataSource;
 import com.mjc.school.repository.model.implementation.NewsModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Component
 public class NewsRepository implements BaseRepository<NewsModel,Long> {
     private final DataSource dataSource;
     @Autowired

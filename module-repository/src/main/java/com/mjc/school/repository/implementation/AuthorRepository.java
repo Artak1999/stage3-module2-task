@@ -5,11 +5,13 @@ import com.mjc.school.repository.DataSource;
 import com.mjc.school.repository.OnDelete;
 import com.mjc.school.repository.model.implementation.AuthorModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Component
 public class AuthorRepository implements BaseRepository<AuthorModel,Long> {
     private final DataSource dataSource;
 
