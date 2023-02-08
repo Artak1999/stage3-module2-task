@@ -3,11 +3,13 @@ package com.mjc.school.repository;
 import com.mjc.school.repository.model.implementation.AuthorModel;
 import com.mjc.school.repository.model.implementation.NewsModel;
 import com.mjc.school.repository.utils.Reader;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.*;
 
 @Component
+@Scope("singleton")
 public class DataSource {
     private static final String NEWS_TITLE_FILE_NAME = "news";
     private static final String NEWS_CONTENT_FILE_NAME = "content";
