@@ -12,10 +12,14 @@ import com.mjc.school.service.exception.ServiceException;
 import com.mjc.school.service.interfaces.NewsMapper;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class NewsService implements BaseService<NewsDtoRequest, NewsDtoResponse, Long> {
     private final BaseRepository<NewsModel, Long> newsRepository;
     private final BaseRepository<AuthorModel, Long> authorRepository;
