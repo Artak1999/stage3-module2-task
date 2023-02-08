@@ -7,10 +7,10 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
 import java.util.List;
-
+@org.mapstruct.Mapper
 public interface AuthorMapper {
     @Mappings({@Mapping(
-            target = "creationDate",
+            target = "createDate",
             ignore = true
     ), @Mapping(
             target = "lastUpdateDate",

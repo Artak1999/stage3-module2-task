@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 @Component
 public class Menu {
     private CommandFactory commandFactory;
@@ -21,6 +23,29 @@ public class Menu {
     public void printMenu() {
         for (MenuList menuList : MenuList.values()) {
             System.out.println(menuList.getId() + ") " + menuList.getValues());
+        }
+    }
+
+    public void printMenuList(){
+        Scanner input = new Scanner(System.in);
+        while (true) {
+            printMenu();
+            System.out.print("Enter number: ");
+            String number = input.nextLine();
+            switch (number) {
+                case "1" -> createNews(input);
+                case "2" -> createAuthor(input);
+                case "3" -> getAllNews();
+                case "4" -> getAllAuthors();
+                case "5" -> getNewsById(input);
+                case "6" -> getAuthorById(input);
+                case "7" -> updateNews(input);
+                case "8" -> updateAuthor(input);
+                case "9" -> deleteNews(input);
+                case "10" -> deleteAuthor(input);
+                case "0" -> exit(0);
+                default -> System.out.println("Command not found.Please enter again!");
+            }
         }
     }
 

@@ -4,7 +4,6 @@ import com.mjc.school.repository.model.implementation.AuthorModel;
 import com.mjc.school.repository.model.implementation.NewsModel;
 import com.mjc.school.repository.utils.Reader;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDateTime;
 import java.util.*;
 

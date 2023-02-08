@@ -7,7 +7,9 @@ import com.mjc.school.service.dto.AuthorDtoResponse;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.dto.NewsDtoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CommandFactory {
     public static final int CREATE_NEWS = 1;
     public static final int GET_ALL_NEWS = 2;
