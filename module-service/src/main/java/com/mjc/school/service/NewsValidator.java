@@ -4,11 +4,9 @@ import com.mjc.school.service.dto.AuthorDtoRequest;
 import com.mjc.school.service.dto.NewsDtoRequest;
 import com.mjc.school.service.exception.Error;
 import com.mjc.school.service.exception.ValidatorException;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope("singleton")
 public class NewsValidator {
     private static final int NEWS_TITLE_MIN_LENGTH = 5;
     private static final int NEWS_TITLE_MAX_LENGTH = 30;

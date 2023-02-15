@@ -1,14 +1,18 @@
 package com.mjc.school;
 
+import com.mjc.school.controller.CommandHandler;
 import com.mjc.school.controller.commands.CommandFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-
-import static java.lang.System.exit;
+import java.util.stream.Stream;
 
 @Component
 public class Menu {
@@ -31,20 +35,18 @@ public class Menu {
         while (true) {
             printMenu();
             System.out.print("Enter number: ");
-            String number = input.nextLine();
-            switch (number) {
-                case "1" -> createNews(input);
-                case "2" -> createAuthor(input);
-                case "3" -> getAllNews();
-                case "4" -> getAllAuthors();
-                case "5" -> getNewsById(input);
-                case "6" -> getAuthorById(input);
-                case "7" -> updateNews(input);
-                case "8" -> updateAuthor(input);
-                case "9" -> deleteNews(input);
-                case "10" -> deleteAuthor(input);
-                case "0" -> exit(0);
-                default -> System.out.println("Command not found.Please enter again!");
+            int number = input.nextInt();
+            Method[] menuMethods = Controller.class.getDeclaredMethods();
+            Method result = null;
+            for (int i = 0; i < menuMethods.length; i++) {
+                 Stream<Method> str = Arrays.stream(menuMethods)
+                        .filter(a -> a.isAnnotationPresent(CommandHandler.class))
+                        .filter(a -> a.getAnnotation(CommandHandler.class).operation() == number);
+            }
+            try {
+                result.invoke();
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                throw new RuntimeException(e);
             }
         }
     }
