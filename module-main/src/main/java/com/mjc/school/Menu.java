@@ -33,17 +33,6 @@ public class Menu {
             printMenu();
             System.out.print("Enter number: ");
             int number = input.nextInt();
-            List<Class<?>> controllers = Arrays.asList(AuthorController.class, NewsController.class);
-            Optional<Method> method = Optional.empty();
-            for (Class<?> o : controllers) {
-                method = Stream.of(o.getDeclaredMethods())
-                        .filter(a -> a.isAnnotationPresent(CommandHandler.class))
-                        .filter(a -> a.getAnnotation(CommandHandler.class).operation() == number)
-                        .findFirst();
-                if(method.isPresent())
-                    break;
-            }
-            return method;
         }
     }
 
