@@ -27,7 +27,7 @@ public class Menu {
         }
     }
 
-    public Optional<Method> printMenuList(){
+    public void printMenuList(){
         Scanner input = new Scanner(System.in);
         while (true) {
             printMenu();
