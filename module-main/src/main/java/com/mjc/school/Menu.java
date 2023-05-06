@@ -2,16 +2,13 @@ package com.mjc.school;
 
 import com.mjc.school.controller.CommandHandler;
 import com.mjc.school.controller.commands.CommandFactory;
+import com.mjc.school.controller.implementation.AuthorController;
+import com.mjc.school.controller.implementation.NewsController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Component
@@ -30,24 +27,23 @@ public class Menu {
         }
     }
 
-    public void printMenuList(){
+    public Optional<Method> printMenuList(){
         Scanner input = new Scanner(System.in);
         while (true) {
             printMenu();
             System.out.print("Enter number: ");
             int number = input.nextInt();
-            Method[] menuMethods = Controller.class.getDeclaredMethods();
-            Method result = null;
-            for (int i = 0; i < menuMethods.length; i++) {
-                 Stream<Method> str = Arrays.stream(menuMethods)
+            List<Class<?>> controllers = Arrays.asList(AuthorController.class, NewsController.class);
+            Optional<Method> method = Optional.empty();
+            for (Class<?> o : controllers) {
+                method = Stream.of(o.getDeclaredMethods())
                         .filter(a -> a.isAnnotationPresent(CommandHandler.class))
-                        .filter(a -> a.getAnnotation(CommandHandler.class).operation() == number);
+                        .filter(a -> a.getAnnotation(CommandHandler.class).operation() == number)
+                        .findFirst();
+                if(method.isPresent())
+                    break;
             }
-            try {
-                result.invoke();
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                throw new RuntimeException(e);
-            }
+            return method;
         }
     }
 

@@ -19,31 +19,31 @@ public class AuthorController implements BaseController<AuthorDtoRequest, Author
     }
 
     @Override
-    @CommandHandler(operation = 4)
-    public List<AuthorDtoResponse> readAll() {
-        return authorService.readAll();
-    }
-
-    @Override
     @CommandHandler(operation = 6)
-    public AuthorDtoResponse readById(Long id) {
-        return authorService.readById(id);
-    }
-
-    @Override
-    @CommandHandler(operation = 2)
     public AuthorDtoResponse create(AuthorDtoRequest createRequest) {
         return authorService.create(createRequest);
     }
 
     @Override
+    @CommandHandler(operation = 7)
+    public List<AuthorDtoResponse> readAll() {
+        return authorService.readAll();
+    }
+
+    @Override
     @CommandHandler(operation = 8)
+    public AuthorDtoResponse readById(Long id) {
+        return authorService.readById(id);
+    }
+
+    @Override
+    @CommandHandler(operation = 9)
     public AuthorDtoResponse update(AuthorDtoRequest updateRequest) {
         return authorService.update(updateRequest);
     }
 
     @Override
-    @CommandHandler(operation = 4)
+    @CommandHandler(operation = 10)
     public boolean deleteById(Long id) {
         return authorService.deleteById(id);
     }
